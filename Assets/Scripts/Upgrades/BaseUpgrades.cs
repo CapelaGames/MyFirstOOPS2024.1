@@ -8,5 +8,18 @@ public abstract class BaseUpgrades
     protected int cost = 1;
 
     public abstract void ApplyUpgrade();
+
+
+    public bool PayForUpgrade(ref int money)
+    {
+        if (money >= cost)
+        {
+            money -= cost;
+            
+            return true;
+        }
+
+        return false;
+    }
     
 }
