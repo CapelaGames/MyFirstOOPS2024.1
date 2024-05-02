@@ -29,4 +29,9 @@ public class SpeedUpgrade : BaseUpgrades
     {
         planeController.speed += upgradeSpeed;
     }
+    
+    public override string UpgradeName()
+    {
+        return "Speed " + upgradeSpeed;
+    }
 }

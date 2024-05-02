@@ -7,7 +7,28 @@ using TMPro;
 
 public class UpgradeManager : MonoBehaviour
 {
+    //field
     [SerializeField] private int money = 0;
+
+    //propery
+    //public int Money2 {  get; private set; }
+    public int Money
+    {
+        get
+        {
+            return money;
+        }
+        private set
+        {
+            money = value;
+            foreach (var upgrade in upgrades )
+            {
+               upgrade.CheckButtonCost(value); 
+            }
+        }
+    }
+    
+    
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private Transform buttonParent;
     private PlaneController planeController;
@@ -30,6 +51,10 @@ public class UpgradeManager : MonoBehaviour
             var upgrade = upgrades[i];
             
             Button go = Instantiate(buttonPrefab, buttonParent);
+            upgrade.SetButton(go);
+            upgrade.CheckButtonCost(Money); 
+            TMP_Text text = go.GetComponentInChildren<TMP_Text>();
+            text.text = upgrade.UpgradeName(); 
 
             int x = i;
             go.onClick.AddListener(()=>PurchaseUpgrade(x));
@@ -38,9 +63,17 @@ public class UpgradeManager : MonoBehaviour
 
     public void PurchaseUpgrade(int index)
     {
-        if (upgrades[index].PayForUpgrade(ref money))
+        int tempMoney = Money;
+        if (upgrades[index].PayForUpgrade(ref tempMoney))
         {
             upgrades[index].ApplyUpgrade();
         }
+
+        Money = tempMoney;
+    }
+
+    public void EarnMoney(int amount)
+    {
+        Money += amount;
     }
 }
