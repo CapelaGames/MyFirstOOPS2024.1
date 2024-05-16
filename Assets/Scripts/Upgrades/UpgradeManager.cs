@@ -16,14 +16,14 @@ public class UpgradeManager : MonoBehaviour
         planeController = FindObjectOfType<PlaneController>();
         
         upgrades = new List<BaseUpgrade>();
-        upgrades.Add(new SpeedUpgrade(planeController, 5, 500f));
+        /*upgrades.Add(new SpeedUpgrade(planeController, 5, 500f));
         upgrades.Add(new SpeedUpgrade(planeController, 8, 1000f));
         upgrades.Add(new SpeedUpgrade(planeController, 12, 1500f));
         upgrades.Add(new SpeedUpgrade(planeController, 15, 2000f));
         upgrades.Add(new GravityUprade(planeController, 5, 0.5f));
         upgrades.Add(new GravityUprade(planeController, 8, 1f));
         upgrades.Add(new GravityUprade(planeController, 12, 1.5f));
-        upgrades.Add(new GravityUprade(planeController, 15, 2f));
+        upgrades.Add(new GravityUprade(planeController, 15, 2f));*/
         
        int x = 0;
         foreach (var upgrade in upgrades)
