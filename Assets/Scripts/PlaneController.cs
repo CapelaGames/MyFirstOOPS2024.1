@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class PlaneController : MonoBehaviour
     public float lift = 10;
     public float rotationSpeed = 10f;
 
+    public float score = 0;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -84,6 +87,24 @@ public class PlaneController : MonoBehaviour
     float SpeedMultiplier()
     {
         return Mathf.InverseLerp(0, 10,rb.velocity.magnitude );   
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        IScoreable scoreable = other.GetComponent<IScoreable>();
+        if (scoreable != null)
+        {
+            score += scoreable.OnScore();
+        }
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+       IScoreable scoreable = other.gameObject.GetComponent<IScoreable>();
+        if (scoreable != null)
+        {
+           score += scoreable.OnScore();
+        }
     }
 }
 

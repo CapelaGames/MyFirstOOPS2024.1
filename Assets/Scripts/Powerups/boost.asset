@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f898690674a0b46a49df0ab25f1b43, type: 3}
   m_Name: boost
   m_EditorClassIdentifier: 
-  boost: 10
+  boost: 1
