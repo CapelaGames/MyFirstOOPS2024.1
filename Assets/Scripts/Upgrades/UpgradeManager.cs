@@ -49,7 +49,9 @@ public class UpgradeManager : MonoBehaviour
         {
             Button go = Instantiate(buttonPrefab, buttonParent);
             TMP_Text text = go.GetComponentInChildren<TMP_Text>();
-            text.text = upgrade.UpgradeName(); 
+            text.text = upgrade.UpgradeName();
+            upgrade.SetButton(go);
+            upgrade.CheckButtonCost(Money);
 
             int y = x;
             go.onClick.AddListener( ()=>PurchaseUpgrade(y));
